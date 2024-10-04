@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"fmt"
 )
 
 // ListLocations -
@@ -12,6 +13,23 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 	if pageURL != nil {
 		url = *pageURL
 	}
+
+	// check if the data is in the cache.
+	val, ok := c.cache.Get(url)
+	if ok {
+		// cache hit
+		fmt.Println("cache hit")
+		locationsResp := RespShallowLocations{}
+		err := json.Unmarshal(val, &locationsResp)
+		if err != nil {
+			return RespShallowLocations{}, err
+		}
+
+		return locationsResp, nil
+	}
+
+	// cache miss 
+	fmt.Println("cache miss")
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -34,6 +52,9 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 	if err != nil {
 		return RespShallowLocations{}, err
 	}
+
+	// add the data to the cache.
+	c.cache.Add(url, dat)
 
 	return locationsResp, nil
 }
