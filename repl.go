@@ -13,6 +13,7 @@ type config struct {
 	pokeapiClient    pokeapi.Client
 	nextLocationsURL *string
 	prevLocationsURL *string
+	caughtPokemon    map[string]pokeapi.Pokemon
 }
 
 func startRepl(cfg *config) {
@@ -27,11 +28,8 @@ func startRepl(cfg *config) {
 		}
 
 		commandName := words[0]
-		// args is used to pass additional arguments to the command
 		args := []string{}
-		// if the user has entered more than one word, then the first word is the command and the rest are the arguments
 		if len(words) > 1 {
-			// words[1:] returns a slice of the words starting from the second word to the end
 			args = words[1:]
 		}
 
@@ -68,9 +66,14 @@ func getCommands() map[string]cliCommand {
 			description: "Displays a help message",
 			callback:    commandHelp,
 		},
+		"catch": {
+			name:        "catch <pokemon_name>",
+			description: "Attempt to catch a pokemon",
+			callback:    commandCatch,
+		},
 		"explore": {
-			name:        "explore <location_area>",
-			description: "Lists the pokemon in a location area",
+			name:        "explore <location_name>",
+			description: "Explore a location",
 			callback:    commandExplore,
 		},
 		"map": {
