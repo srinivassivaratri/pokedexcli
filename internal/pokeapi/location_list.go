@@ -58,3 +58,6 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 
 	return locationsResp, nil
 }
+
+
+
