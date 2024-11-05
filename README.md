@@ -1,51 +1,133 @@
-# Pokedexcli
+# Pokédex CLI
 
-## What is this?
+Bring the Pokémon world to your terminal! **Pokédex CLI** is a command-line game where you can explore, catch, and interact with Pokémon, all from your console.
 
-Pokedexcli is a fun command-line game that lets you explore the world of Pokemon right from your computer's terminal. It's like having a Pokedex (a digital Pokemon encyclopedia) at your fingertips!
+## 🌟 Description
 
-## What can I do with it?
+Pokédex CLI is a terminal-based application that emulates the experience of being a Pokémon Trainer. Travel through different locations, encounter wild Pokémon, attempt to catch them, and build your own Pokédex. The game connects to the real-time [PokéAPI](https://pokeapi.co/) to fetch accurate data about Pokémon and locations.
 
-1. **Explore Pokemon locations**: You can move around different areas where Pokemon live.
-2. **Catch Pokemon**: Try your luck at catching Pokemon you find.
-3. **View your Pokedex**: See all the Pokemon you've caught.
-4. **Inspect Pokemon**: Get more details about the Pokemon you've caught.
+## 🤔 Why?
 
-## How does it work?
+As a fan of Pokémon and minimalist interfaces, I wanted a way to enjoy the Pokémon universe without the need for graphics or complex setups. Existing games are great, but they don't offer the lightweight, fast-paced experience that a terminal can provide. So, I built Pokédex CLI to bring the excitement of catching and learning about Pokémon directly to the command line.
 
-When you start the game, you'll see a prompt that looks like this:
+## 🚀 Quick Start
 
-Pokedex >
+### Prerequisites
 
-You can type different commands here to play the game. Here are the main commands:
+- Go 1.16 or higher installed on your system.
 
-- `help`: Shows you all the available commands.
-- `map`: Shows you the next set of locations you can explore.
-- `mapb`: Shows you the previous set of locations.
-- `explore <location name>`: Lets you explore a specific location to find Pokemon.
-- `catch <pokemon name>`: Tries to catch a Pokemon you've found.
-- `inspect <pokemon name>`: Gives you more information about a Pokemon you've caught.
-- `pokedex`: Shows you all the Pokemon you've caught.
-- `exit`: Closes the game.
+### Installation
 
-## Cool features
+Install Pokédex CLI using the Go toolchain:
 
-1. **It remembers things**: The game uses a clever system (called caching) to remember information it's already looked up. This makes the game faster!
+```bash
+go install github.com/srinivassivaratri/pokedexcli@latest
+```
 
-2. **It's connected**: The game connects to a big Pokemon database (called PokeAPI) to get real information about Pokemon.
+### Run the Game
 
-3. **It's smart**: The game can handle different situations, like if you type a command wrong or try to catch a Pokemon you haven't found yet.
+```bash
+pokedexcli
+```
 
-## For the techies
+## 📖 Usage
 
-If you're interested in the code behind the game:
+Once you start the game, you'll see the prompt:
 
-- It's written in a programming language called Go.
-- The main game loop is in the `repl.go` file (lines 19-48).
-- The commands are defined in separate files like `command_catch.go`, `command_explore.go`, etc.
-- It uses a custom caching system (in the `internal/pokecache` folder) to store Pokemon data.
-- The connection to the Pokemon API is handled in the `internal/pokeapi` folder.
+```
+Pokédex >
+```
 
-## Want to play?
+Available commands:
 
-To start playing, you'll need to have Go installed on your computer. Then, you can run the game using the command line. Have fun exploring the world of Pokemon!
+- `help`: Display all available commands.
+- `map`: Show the next set of locations you can explore.
+- `mapb`: Show the previous set of locations.
+- `explore <location_name>`: Explore a specific location to find Pokémon.
+- `catch <pokemon_name>`: Attempt to catch a Pokémon you've encountered.
+- `inspect <pokemon_name>`: View detailed information about a caught Pokémon.
+- `pokedex`: Display all the Pokémon you've caught so far.
+- `exit`: Exit the game.
+
+### Examples
+
+Explore a location:
+
+```bash
+Pokédex > explore viridian-forest
+```
+
+Catch a Pokémon:
+
+```bash
+Pokédex > catch pikachu
+```
+
+Inspect a caught Pokémon:
+
+```bash
+Pokédex > inspect pikachu
+```
+
+## 🎮 Features
+
+- **Real-time Data**: Fetches live data from the PokéAPI for up-to-date Pokémon information.
+- **Caching System**: Implements a custom caching mechanism to optimize performance.
+- **Graceful Error Handling**: Handles incorrect inputs and unexpected situations smoothly.
+- **Modular Design**: Easy to extend with new features and commands.
+
+## 🛠️ For Developers
+
+### Tech Stack
+
+- **Language**: Go
+- **API**: PokéAPI
+- **Caching**: Custom caching system in `internal/pokecache`
+
+### Project Structure
+
+- **main.go**: Entry point of the application.
+- **repl.go**: Core game loop handling user input.
+- **Commands**: Each command is defined in its own file (e.g., `command_catch.go`, `command_explore.go`).
+- **internal/pokeapi**: Handles API interactions with the PokéAPI.
+- **internal/pokecache**: Implements caching for API responses.
+
+## 🤝 Contributing
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/srinivassivaratri/pokedexcli.git
+cd pokedexcli
+```
+
+### Build the Project
+
+```bash
+go build
+```
+
+### Run the Project
+
+```bash
+./pokedexcli
+```
+
+### Run Tests
+
+```bash
+go test ./...
+```
+
+### Submit a Pull Request
+
+- Fork the repository.
+- Create a new branch for your feature or bug fix.
+- Commit your changes and push to your fork.
+- Open a pull request against the `main` branch.
+
+
+## 🙏 Acknowledgments
+
+- [PokéAPI](https://pokeapi.co/) for providing the Pokémon data.
+- Inspired by the classic Pokémon games and the open-source community.
